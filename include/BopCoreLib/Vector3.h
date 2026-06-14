@@ -5,7 +5,9 @@
 #pragma once
 
 
-
-class Vector3 {
+namespace bop {
+struct Vector3 {
 
 };
+}
+

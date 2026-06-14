@@ -1,4 +1,7 @@
-#include "Vector2.h"
+#include <cmath>
+#include <iosfwd>
+
+#include "BopCoreLib/Vector2.h"
 
 namespace bop {
 
