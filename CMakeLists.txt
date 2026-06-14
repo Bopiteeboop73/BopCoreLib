@@ -1,8 +1,14 @@
-cmake_minimum_required(VERSION 4.1)
-project(BopCoreLib)
+cmake_minimum_required(VERSION 3.20)
 
-set(CMAKE_CXX_STANDARD 20)
+project(BopCoreLib LANGUAGES CXX)
 
 add_library(BopCoreLib STATIC
-        maths/Vector2.cpp
-        )
+        BopCore/maths/Vector2.cpp
+)
+
+target_compile_features(BopCoreLib PUBLIC cxx_std_20)
+
+target_include_directories(BopCoreLib
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
