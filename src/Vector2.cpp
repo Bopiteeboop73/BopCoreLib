@@ -5,7 +5,7 @@
 
 namespace bop {
 
-    Vector2::Vector2(const float pX, const float pY): X(pX), Y(pY) {}
+    Vector2::Vector2(const Float pX, const Float pY): X(pX), Y(pY) {}
 
     Vector2 & Vector2::operator+=(const Vector2 &pOther) {
         X += pOther.X;
@@ -22,25 +22,25 @@ namespace bop {
         return {-X, -Y};
     }
 
-    Vector2 & Vector2::operator*=(const float pScale) {
+    Vector2 & Vector2::operator*=(const Float pScale) {
         X *= pScale;
         Y *= pScale;
 
         return *this;
     }
 
-    Vector2 & Vector2::operator/=(const float pScale) {
+    Vector2 & Vector2::operator/=(const Float pScale) {
         X /= pScale;
         Y /= pScale;
 
         return *this;
     }
 
-    float Vector2::SqrMagnitude() const {
+    Float Vector2::SqrMagnitude() const {
         return X * X + Y * Y;
     }
 
-    float Vector2::Magnitude() const {
+    Float Vector2::Magnitude() const {
         return sqrt(SqrMagnitude());
     }
 
@@ -61,7 +61,7 @@ namespace bop {
         return {-Y, X};
     }
 
-    float Vector2::GetAngle(const Vector2 pOther) const {
+    Float Vector2::GetAngle(const Vector2 pOther) const {
         return atan2(cross(*this, pOther), dot(*this, pOther));
     }
 
@@ -73,24 +73,24 @@ namespace bop {
         return pVec1 + -pVec2;
     }
 
-    Vector2 operator*(const Vector2 &pVec, float pScale) {
+    Vector2 operator*(const Vector2 &pVec, Float pScale) {
         return {pVec.X * pScale, pVec.Y * pScale};
     }
 
-    Vector2 operator*(float pScale, const Vector2 &pVec) {
+    Vector2 operator*(Float pScale, const Vector2 &pVec) {
         return pVec * pScale;
     }
 
-    Vector2 operator/(const Vector2 &pVec, const float pScale) {
+    Vector2 operator/(const Vector2 &pVec, const Float pScale) {
         return {pVec.X / pScale, pVec.Y / pScale};
     }
 
-    Vector2 operator/(const float pScale, const Vector2 &pVec) {
+    Vector2 operator/(const Float pScale, const Vector2 &pVec) {
         return pVec / pScale;
     }
 
     bool operator==(const Vector2 &pVec1, const Vector2 &pVec2) {
-        constexpr float EPS = 1e-5f;
+        constexpr Float EPS = 1e-5f;
         return std::fabs(pVec1.X - pVec2.X) < EPS &&
                std::fabs(pVec1.Y - pVec2.Y) < EPS;
     }
@@ -99,11 +99,11 @@ namespace bop {
         return !(pVec1 == pVec2);
     }
 
-    float dot(Vector2 pVec1, Vector2 pVec2) {
+    Float dot(Vector2 pVec1, Vector2 pVec2) {
         return pVec1.X * pVec2.X + pVec1.Y * pVec2.Y;
     }
 
-    float cross(Vector2 pVec1, Vector2 pVec2) {
+    Float cross(Vector2 pVec1, Vector2 pVec2) {
         return pVec1.X * pVec2.Y - pVec2.X * pVec1.Y;
     }
 }
