@@ -5,7 +5,7 @@
 
 namespace bop {
 
-    Vector2::Vector2(const Float pX, const Float pY): X(pX), Y(pY) {}
+    Vector2::Vector2(const Decimal pX, const Decimal pY): X(pX), Y(pY) {}
 
     Vector2 & Vector2::operator+=(const Vector2 &pOther) {
         X += pOther.X;
@@ -22,26 +22,26 @@ namespace bop {
         return {-X, -Y};
     }
 
-    Vector2 & Vector2::operator*=(const Float pScale) {
+    Vector2 & Vector2::operator*=(const Decimal pScale) {
         X *= pScale;
         Y *= pScale;
 
         return *this;
     }
 
-    Vector2 & Vector2::operator/=(const Float pScale) {
+    Vector2 & Vector2::operator/=(const Decimal pScale) {
         X /= pScale;
         Y /= pScale;
 
         return *this;
     }
 
-    Float Vector2::SqrMagnitude() const {
+    Decimal Vector2::SqrMagnitude() const {
         return X * X + Y * Y;
     }
 
-    Float Vector2::Magnitude() const {
-        return sqrt(SqrMagnitude());
+    Decimal Vector2::Magnitude() const {
+        return std::sqrt(SqrMagnitude());
     }
 
     std::ostream & operator<<(std::ostream &pOs, const Vector2 &pV) {
@@ -61,8 +61,8 @@ namespace bop {
         return {-Y, X};
     }
 
-    Float Vector2::GetAngle(const Vector2 pOther) const {
-        return atan2(cross(*this, pOther), dot(*this, pOther));
+    Decimal Vector2::GetAngle(const Vector2 pOther) const {
+        return std::atan2(cross(*this, pOther), dot(*this, pOther));
     }
 
     Vector2 operator+(const Vector2 &pVec1, const Vector2 &pVec2) {
@@ -73,24 +73,20 @@ namespace bop {
         return pVec1 + -pVec2;
     }
 
-    Vector2 operator*(const Vector2 &pVec, Float pScale) {
+    Vector2 operator*(const Vector2 &pVec, Decimal pScale) {
         return {pVec.X * pScale, pVec.Y * pScale};
     }
 
-    Vector2 operator*(Float pScale, const Vector2 &pVec) {
+    Vector2 operator*(Decimal pScale, const Vector2 &pVec) {
         return pVec * pScale;
     }
 
-    Vector2 operator/(const Vector2 &pVec, const Float pScale) {
+    Vector2 operator/(const Vector2 &pVec, const Decimal pScale) {
         return {pVec.X / pScale, pVec.Y / pScale};
     }
 
-    Vector2 operator/(const Float pScale, const Vector2 &pVec) {
-        return pVec / pScale;
-    }
-
     bool operator==(const Vector2 &pVec1, const Vector2 &pVec2) {
-        constexpr Float EPS = 1e-5f;
+        constexpr Decimal EPS = 1e-5;
         return std::fabs(pVec1.X - pVec2.X) < EPS &&
                std::fabs(pVec1.Y - pVec2.Y) < EPS;
     }
@@ -99,11 +95,11 @@ namespace bop {
         return !(pVec1 == pVec2);
     }
 
-    Float dot(Vector2 pVec1, Vector2 pVec2) {
+    Decimal dot(Vector2 pVec1, Vector2 pVec2) {
         return pVec1.X * pVec2.X + pVec1.Y * pVec2.Y;
     }
 
-    Float cross(Vector2 pVec1, Vector2 pVec2) {
+    Decimal cross(Vector2 pVec1, Vector2 pVec2) {
         return pVec1.X * pVec2.Y - pVec2.X * pVec1.Y;
     }
 }

@@ -5,5 +5,5 @@
 #pragma once
 
 namespace bop {
-    using Float = double;
+    using Decimal = double;
 }
